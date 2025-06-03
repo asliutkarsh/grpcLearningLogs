@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package com.asliutkarsh.grpc.dreamlog.proto;
+
+import "google/protobuf/empty.proto";
+
+option java_package = "com.asliutkarsh.grpc.dreamlog.protobuf";
+option java_outer_classname = "DreamLogProto";
+option java_multiple_files = true;
+
+message Dream {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  Mood mood = 4;
+  string dreamDate = 5;
+  repeated string tags = 6;
+}
+
+enum Mood {
+  HAPPY = 0;
+  SCARY = 1;
+  SAD = 2;
+  WEIRD = 3;
+}
+
+message DreamId {
+  string id = 1;
+}
+
+message TagRequest {
+  string tag = 1;
+}
+
+message MoodRequest {
+  Mood mood = 1;
+}
+
+message DreamList {
+  repeated Dream dreams = 1;
+}
+
+service DreamService {
+  rpc AddDream(Dream) returns (DreamId);
+  rpc GetDream(DreamId) returns (Dream);
+  rpc ListDreams(google.protobuf.Empty) returns (DreamList);
+  rpc SearchByTag(TagRequest) returns (DreamList);
+  rpc SearchByMood(MoodRequest) returns (DreamList);
+}
