@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.asliutkarsh.grpc.stream.proto.fitness";
+option java_outer_classname = "FitnessTrackerProto";
+
+package fitness;
+
+service FitnessTrackerService {
+  rpc StreamFitnessData(stream FitnessData) returns (FitnessSummary);
+}
+
+message FitnessData {
+  string user_id = 1;
+  int32 heart_rate = 2;
+  int32 steps = 3;
+  double calories_burned = 4;
+  int64 timestamp = 5;
+}
+
+message FitnessSummary {
+  string user_id = 1;
+  int32 total_steps = 2;
+  double total_calories = 3;
+  int32 average_heart_rate = 4;
+}

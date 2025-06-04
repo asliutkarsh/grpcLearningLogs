@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.asliutkarsh.grpc.stream.proto.recipe";
+option java_outer_classname = "RecipeStreamerProto";
+
+package recipe;
+
+service RecipeStreamerService {
+  rpc GetRecipeSteps(RecipeRequest) returns (stream RecipeStep);
+}
+
+message RecipeRequest {
+  string recipe_name = 1;
+  string difficulty = 2;
+}
+
+message RecipeStep {
+  int32 step_number = 1;
+  string instruction = 2;
+  int32 duration_in_seconds = 3;
+}
