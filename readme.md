@@ -49,6 +49,20 @@ This is a toy example to **simulate real microservice communication patterns** a
 - Making sure `protoc` generates the correct structure inside `target/`
 - Handling VS Code not resolving generated classes
 
+## VS code fixes
+
+ To resolve issues with VS Code not recognizing generated classes, I added the following configuration to my `settings.json` file:
+
+ ```json
+ {
+    "java.project.sourcePaths": [
+        "src/main/java",
+        "target/generated-sources/protobuf/java",
+        "target/generated-sources/protobuf/grpc-java"
+    ]
+}
+```
+
 ---
 
 ## Achievements
